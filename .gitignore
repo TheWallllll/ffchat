@@ -1,0 +1,7 @@
+build-ffchat*
+Debug
+x64
+.vs
+ffchat.pro.user
+node_modules
+build
