@@ -10,6 +10,5 @@ public:
 private:
 	tcp::acceptor  _acceptor;                   // 接收连接
 	net::io_context& _ioc;						// 上下文
-	tcp::socket   _socket;						// socket
 };
 
