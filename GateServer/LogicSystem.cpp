@@ -1,5 +1,6 @@
 #include "LogicSystem.h"
 #include "HttpConnection.h"
+#include "VerifyGrpcClient.h"
 
 LogicSystem::LogicSystem()
 {
@@ -39,8 +40,9 @@ LogicSystem::LogicSystem()
         }
 
         auto email = src_root["email"].asString();
+        GetVarifyRsp rsp = VerifyGrpcClient::GetInstance()->GetVarifyCode(email);
         std::cout << "email is " << email << std::endl;
-        root["error"] = 0;
+        root["error"] = rsp.error();
         root["email"] = src_root["email"];
         // TCP面向字节流，转换为字符串。
         std::string jsonstr = root.toStyledString();
