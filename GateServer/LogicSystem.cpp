@@ -2,6 +2,7 @@
 #include "HttpConnection.h"
 #include "VerifyGrpcClient.h"
 #include "RedisMgr.h"
+#include "MySqlMgr.h"
 
 LogicSystem::LogicSystem()
 {
@@ -67,7 +68,7 @@ LogicSystem::LogicSystem()
             return true;
         }
         auto email = src_root["email"].asString();
-        auto name = src_root["name"].asString();
+        auto name = src_root["user"].asString();
         auto pwd = src_root["passwd"].asString();
         auto confirm = src_root["confirm"].asString();
 
@@ -99,12 +100,20 @@ LogicSystem::LogicSystem()
         }
 
         //查找数据库判断用户是否存在
-
+        int uid = MysqlMgr::GetInstance()->RegUser(name, email, pwd);
+        if (uid == 0 || uid == -1) {
+            std::cout << " user or email exist" << std::endl;
+            root["error"] = ErrorCodes::UserExist;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return true;
+        }
         root["error"] = 0;
-        root["email"] = src_root["email"];
-        root["user"] = src_root["user"].asString();
-        root["passwd"] = src_root["passwd"].asString();
-        root["confirm"] = src_root["confirm"].asString();
+        root["uid"] = uid;
+        root["email"] = email;
+        root["user"] = name;
+        root["passwd"] = pwd;
+        root["confirm"] = confirm;
         root["varifycode"] = src_root["varifycode"].asString();
         std::string jsonstr = root.toStyledString();
         beast::ostream(connection->_response.body()) << jsonstr;

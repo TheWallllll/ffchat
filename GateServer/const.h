@@ -16,7 +16,6 @@
 #include <boost/property_tree/ini_parser.hpp>
 #include <atomic>
 #include <queue>
-#include "hiredis/hiredis.h"
 #include <cassert>
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
@@ -37,6 +36,21 @@ enum ErrorCodes {
 	PasswdInvalid = 1009,   //密码更新失败
 	TokenInvalid = 1010,   //Token失效
 	UidInvalid = 1011,  //uid无效
+};
+
+// Defer类
+class Defer {
+public:
+	// 接受一个lambda表达式或者函数指针
+	Defer(std::function<void()> func) : func_(func) {}
+
+	// 析构函数中执行传入的函数
+	~Defer() {
+		func_();
+	}
+
+private:
+	std::function<void()> func_;
 };
 
 #define CODEPREFIX "code_"
