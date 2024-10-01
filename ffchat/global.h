@@ -13,6 +13,8 @@
  * @brief repolish用来根据属性刷新qss
  */
 extern std::function<void(QWidget*)> repolish;
+
+extern std::function<QString(QString)> xorString;
 /**
  * @brief The ReqId enum 表示请求的id
  */
@@ -27,8 +29,23 @@ enum ErrorCodes{
     ERR_NETWORK = 2,
 };
 
+enum TipErr{
+    TIP_SUCCESS = 0,
+    TIP_EMAIL_ERR = 1,
+    TIP_PWD_ERR = 2,
+    TIP_CONFIRM_ERR = 3,
+    TIP_PWD_CONFIRM = 4,
+    TIP_VARIFY_ERR = 5,
+    TIP_USER_ERR = 6
+};
+
 enum Modules{
     REGISTERMOD = 0,
+};
+
+enum ClickLbState{
+    Normal = 0,
+    Selected = 1
 };
 
 extern QString gate_url_prefix;
