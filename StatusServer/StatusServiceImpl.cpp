@@ -74,6 +74,7 @@ Status StatusServiceImpl::Login(ServerContext* context, const LoginReq* request,
 	reply->set_error(ErrorCodes::Success);
 	reply->set_uid(uid);
 	reply->set_token(token);
+	std::cout << "return Status::Ok" << std::endl;
 	return Status::OK;
 }
 

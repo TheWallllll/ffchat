@@ -87,7 +87,9 @@ void LogicSystem::LoginHandler(shared_ptr<CSession> session, const short &msg_id
 	});
 
 	rtvalue["error"] = rsp.error();
+	std::cout << "rsp.error:" << rsp.error() << std::endl;
 	if (rsp.error() != ErrorCodes::Success) {
+		std::cout << "rsp.error() != ErrorCodes::Succes" << std::endl;
 		return;
 	}
 
@@ -99,6 +101,7 @@ void LogicSystem::LoginHandler(shared_ptr<CSession> session, const short &msg_id
 		user_info = MysqlMgr::GetInstance()->GetUser(uid);
 		if (user_info == nullptr) {
 			rtvalue["error"] = ErrorCodes::UidInvalid;
+			std::cout << "²éÑ¯Êý¾Ý¿âÊ§°Ü" << std::endl;
 			return;
 		}
 
@@ -111,4 +114,5 @@ void LogicSystem::LoginHandler(shared_ptr<CSession> session, const short &msg_id
 	rtvalue["uid"] = uid;
 	rtvalue["token"] = rsp.token();
 	rtvalue["name"] = user_info->name;
+	std::cout << "LoginHandler finished" << std::endl;
 }
