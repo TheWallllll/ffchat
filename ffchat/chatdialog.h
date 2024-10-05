@@ -25,6 +25,9 @@ private:
     ChatUIMode _state;
     bool _b_loading;
     Ui::ChatDialog *ui;
+
+public slots:
+    void slot_loading_chat_user();
 };
 
 #endif // CHATDIALOG_H
