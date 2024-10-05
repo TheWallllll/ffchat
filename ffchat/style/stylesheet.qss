@@ -276,3 +276,9 @@ LoadingDlg{
 #chat_area{
     border: none;
 }
+
+#chat_user_name{
+    color:rgb(153,153,153);
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}

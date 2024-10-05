@@ -1,4 +1,4 @@
-﻿#ifndef CHATVIEW_H
+#ifndef CHATVIEW_H
 #define CHATVIEW_H
 #include <QScrollArea>
 #include <QVBoxLayout>
