@@ -41,6 +41,8 @@ ChatDialog::ChatDialog(QWidget *parent)
         ui->search_edit->clear();
         clearAction->setIcon(QIcon(":/res/close_transparent.png")); // 清除文本后，切换回透明图标
         ui->search_edit->clearFocus();
+        //清除按钮被按下则不显示搜索框
+        ShowSearch(false);
     });
 
     ShowSearch(false);
@@ -67,6 +69,9 @@ ChatDialog::ChatDialog(QWidget *parent)
 
     connect(ui->side_chat_lb, &StateWidget::clicked, this, &ChatDialog::slot_side_chat);
     connect(ui->side_contact_lb, &StateWidget::clicked, this, &ChatDialog::slot_side_contact);
+
+    //链接搜索框输入变化
+    connect(ui->search_edit, &QLineEdit::textChanged, this, &ChatDialog::slot_text_changed);
 }
 
 ChatDialog::~ChatDialog()
@@ -190,4 +195,10 @@ void ChatDialog::slot_side_contact(){
     ui->stackedWidget->setCurrentWidget(ui->friend_apply_page);
     _state = ChatUIMode::ContactMode;
     ShowSearch(false);
+}
+
+void ChatDialog::slot_text_changed(const QString &str)
+{
+    qDebug()<< "receive slot text changed str is " << str;
+    ShowSearch(true);
 }
