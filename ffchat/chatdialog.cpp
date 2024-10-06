@@ -74,6 +74,9 @@ ChatDialog::ChatDialog(QWidget *parent)
     connect(ui->search_edit, &QLineEdit::textChanged, this, &ChatDialog::slot_text_changed);
     //检测鼠标点击位置判断是否要清空搜索框
     this->installEventFilter(this); // 安装事件过滤器
+
+    //设置聊天label选中状态
+    ui->side_chat_lb->SetSelected(true);
 }
 
 ChatDialog::~ChatDialog()

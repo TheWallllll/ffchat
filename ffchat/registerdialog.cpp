@@ -6,7 +6,7 @@
 
 RegisterDialog::RegisterDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::RegisterDialog), _countdown(5)
+    _countdown(5), ui(new Ui::RegisterDialog)
 {
     ui->setupUi(this);
     //设置密码格式隐藏
