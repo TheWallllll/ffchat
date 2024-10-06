@@ -6,6 +6,7 @@
 #include "userdata.h"
 #include "adduseritem.h"
 #include "usermgr.h"
+#include "findsuccessdlg.h"
 
 SearchList::SearchList(QWidget *parent) : QListWidget(parent), _send_pending(false),
     _find_dlg(nullptr), _search_edit(nullptr)
@@ -100,7 +101,35 @@ void SearchList::addTipItem()
 
 void SearchList::slot_item_clicked(QListWidgetItem *item)
 {
+    QWidget *widget = this->itemWidget(item); // 获取自定义widget对象
+    if(!widget){
+        qDebug()<< "slot item clicked widget is nullptr";
+        return;
+    }
 
+    // 对自定义widget进行操作， 将item 转化为基类ListItemBase
+    ListItemBase *customItem = qobject_cast<ListItemBase*>(widget);
+    if(!customItem){
+        qDebug()<< "slot item clicked widget is nullptr";
+        return;
+    }
+
+    auto itemType = customItem->GetItemType();
+    if(itemType == ListItemType::INVALID_ITEM){
+        qDebug()<< "slot invalid item clicked ";
+        return;
+    }
+
+    if(itemType == ListItemType::ADD_USER_TIP_ITEM){
+        // 创建对话框
+        _find_dlg = std::make_shared<FindSuccessDlg>(this);
+        // 显示对话框
+        _find_dlg->show();
+        return;
+    }
+
+    //清除弹出框
+    CloseFindDlg();
 }
 
 void SearchList::slot_user_search(std::shared_ptr<SearchInfo> si)
