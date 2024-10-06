@@ -475,40 +475,16 @@ void ApplyFriend::SlotAddFirendLabelByClickTip(QString text)
     ui->scrollcontent->setFixedHeight(ui->scrollcontent->height()+ diff_height );
 }
 
-void ApplyFriend::SlotApplySure()
+void ApplyFriend::SlotApplyCancel()
 {
-    qDebug()<<"Slot Apply Sure called" ;
-    //发送请求逻辑
-    QJsonObject jsonObj;
-    auto uid = UserMgr::GetInstance()->GetUid();
-    jsonObj["uid"] = uid;
-    auto name = ui->name_ed->text();
-    if(name.isEmpty()){
-        name = ui->name_ed->placeholderText();
-    }
-
-    jsonObj["applyname"] = name;
-
-    auto bakname = ui->back_ed->text();
-    if(bakname.isEmpty()){
-        bakname = ui->back_ed->placeholderText();
-    }
-
-    jsonObj["bakname"] = bakname;
-    jsonObj["touid"] = _si->_uid;
-
-    QJsonDocument doc(jsonObj);
-    QString jsonString = doc.toJson(QJsonDocument::Indented);
-
-    //发送tcp请求给chat server
-    emit TcpMgr::GetInstance()->sig_send_data(ReqId::ID_ADD_FRIEND_REQ, jsonString);
+    qDebug() << "Slot Apply Cancel";
     this->hide();
     deleteLater();
 }
 
-void ApplyFriend::SlotApplyCancel()
+void ApplyFriend::SlotApplySure()
 {
-    qDebug() << "Slot Apply Cancel";
+    qDebug()<<"Slot Apply Sure called" ;
     this->hide();
     deleteLater();
 }
