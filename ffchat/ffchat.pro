@@ -33,6 +33,7 @@ SOURCES += \
     picturebubble.cpp \
     registerdialog.cpp \
     resetdialog.cpp \
+    statewidget.cpp \
     tcpmgr.cpp \
     textbubble.cpp \
     timerbtn.cpp \
@@ -60,6 +61,7 @@ HEADERS += \
     registerdialog.h \
     resetdialog.h \
     singleton.h \
+    statewidget.h \
     tcpmgr.h \
     textbubble.h \
     timerbtn.h \
