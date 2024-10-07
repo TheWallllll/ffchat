@@ -87,11 +87,11 @@ struct FriendInfo {
         _back(back),_last_msg(last_msg){}
 
     FriendInfo(std::shared_ptr<AuthInfo> auth_info):_uid(auth_info->_uid),
-    _nick(auth_info->_nick),_icon(auth_info->_icon),_name(auth_info->_name),
+    _name(auth_info->_name),_nick(auth_info->_nick),_icon(auth_info->_icon),
       _sex(auth_info->_sex){}
 
     FriendInfo(std::shared_ptr<AuthRsp> auth_rsp):_uid(auth_rsp->_uid),
-    _nick(auth_rsp->_nick),_icon(auth_rsp->_icon),_name(auth_rsp->_name),
+    _name(auth_rsp->_name),_nick(auth_rsp->_nick),_icon(auth_rsp->_icon),
       _sex(auth_rsp->_sex){}
 
     void AppendChatMsgs(const std::vector<std::shared_ptr<TextChatData>> text_vec);
@@ -116,7 +116,7 @@ struct UserInfo {
         _icon(auth->_icon),_sex(auth->_sex),_last_msg(""){}
 
     UserInfo(int uid, QString name, QString icon):
-    _uid(uid), _name(name), _icon(icon),_nick(_name),
+    _uid(uid), _name(name), _nick(_name),_icon(icon),
     _sex(0),_last_msg(""){
 
     }
@@ -159,7 +159,7 @@ struct TextChatData{
 
 struct TextChatMsg{
     TextChatMsg(int fromuid, int touid, QJsonArray arrays):
-        _from_uid(fromuid),_to_uid(touid){
+        _to_uid(touid),_from_uid(fromuid){
         for(auto  msg_data : arrays){
             auto msg_obj = msg_data.toObject();
             auto content = msg_obj["content"].toString();

@@ -135,5 +135,7 @@ const std::vector<QString> names = {
     "Hunter"
 };
 
+const int CHAT_COUNT_PER_PAGE = 13;
+
 extern QString gate_url_prefix;
 #endif // GLOBAL_H
