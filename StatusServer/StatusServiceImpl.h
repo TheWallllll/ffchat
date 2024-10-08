@@ -48,7 +48,5 @@ private:
 	ChatServer getChatServer();
 	std::unordered_map<std::string, ChatServer> _servers;
 	std::mutex _server_mtx;
-	std::unordered_map<int, std::string> _tokens;
-	std::mutex _token_mtx;
 };
 
