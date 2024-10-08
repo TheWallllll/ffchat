@@ -49,4 +49,9 @@ enum MSG_IDS {
 	MSG_CHAT_LOGIN_RSP = 1006, //用户登陆回包
 };
 
-
+#define USERIPPREFIX  "uip_"
+#define USERTOKENPREFIX  "utoken_"
+#define IPCOUNTPREFIX  "ipcount_"
+#define USER_BASE_INFO "ubaseinfo_"
+#define LOGIN_COUNT  "logincount"
+#define NAME_INFO  "nameinfo_"
