@@ -33,7 +33,7 @@ public slots:
     // 连接成功
     void slot_tcp_connect(ServerInfo);
     // 发送成功
-    void slot_send_data(ReqId reqId, QString data);
+    void slot_send_data(ReqId reqId, QByteArray data);
 signals:
     void sig_con_success(bool bsuccess);
     void sig_send_data(ReqId reqId, QByteArray data);
