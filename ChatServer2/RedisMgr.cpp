@@ -56,7 +56,7 @@ bool RedisMgr::Set(const std::string &key, const std::string &value){
 	if (NULL == reply)
 	{
 		std::cout << "Execut command [ SET " << key << "  "<< value << " ] failure ! " << std::endl;
-		freeReplyObject(reply);
+		// freeReplyObject(reply);
 		_con_pool->returnConnection(connect);
 		return false;
 	}

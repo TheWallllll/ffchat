@@ -102,7 +102,7 @@ bool RedisMgr::Get(const std::string& key, std::string& value)
     auto reply = (redisReply*)redisCommand(connect, "GET %s", key.c_str());
     if (reply == NULL) {
         std::cout << "[ GET  " << key << " ] failed" << std::endl;
-        freeReplyObject(reply);
+        // freeReplyObject(reply);
         return false;
     }
 
