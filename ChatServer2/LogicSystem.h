@@ -26,6 +26,7 @@ private:
 	void RegisterCallBacks();
 	void LoginHandler(shared_ptr<CSession>, const short &msg_id, const string &msg_data);
 	void SearchInfo(std::shared_ptr<CSession> session, const short& msg_id, const string& msg_data);
+	void AddFriendApply(std::shared_ptr<CSession> session, const short& msg_id, const string& msg_data);
 
 	bool isPureDigit(const std::string& str);
 	void GetUserByUid(std::string uid_str, Json::Value& rtvalue);

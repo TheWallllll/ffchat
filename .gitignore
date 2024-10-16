@@ -9,3 +9,6 @@ packages
 vcpkg_installed
 vcpkg.json
 packages.config
+ffchat/bin/
+/ffchat/bin/ffchat.exe
+ffchat/bin/ffchat.exe
