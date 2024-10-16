@@ -150,6 +150,8 @@ public:
 	std::shared_ptr<UserInfo> GetUser(int uid);
 	std::shared_ptr<UserInfo> GetUser(std::string name);
 
+	bool GetApplyList(int touid, std::vector<std::shared_ptr<ApplyInfo>>& applyList, int begin, int limit);
+
 private:
 	std::unique_ptr<MySqlPool> pool_;
 };
