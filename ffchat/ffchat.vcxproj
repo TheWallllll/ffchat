@@ -219,6 +219,7 @@
     <ClCompile Include="applyfrienditem.cpp" />
     <ClCompile Include="applyfriendlist.cpp" />
     <ClCompile Include="applyfriendpage.cpp" />
+    <ClCompile Include="authenfriend.cpp" />
     <ClCompile Include="bubbleframe.cpp" />
     <ClCompile Include="chatItembase.cpp" />
     <ClCompile Include="chatdialog.cpp" />
@@ -277,6 +278,7 @@
     <QtMoc Include="findfaildlg.h" />
     <QtMoc Include="findsuccessdlg.h" />
     <QtMoc Include="friendlabel.h" />
+    <QtMoc Include="authenfriend.h" />
     <ClInclude Include="global.h" />
     <QtMoc Include="grouptipitem.h" />
     <QtMoc Include="httpmgr.h" />
@@ -318,6 +320,7 @@
     <QtUic Include="applyfriend.ui" />
     <QtUic Include="applyfrienditem.ui" />
     <QtUic Include="applyfriendpage.ui" />
+    <QtUic Include="authenfriend.ui" />
     <QtUic Include="chatdialog.ui" />
     <QtUic Include="chatpage.ui" />
     <QtUic Include="chatuserwid.ui" />

@@ -8,6 +8,7 @@
 #include "applyfriend.h"
 #include "tcpmgr.h"
 #include "usermgr.h"
+#include "authenfriend.h"
 
 
 ApplyFriendPage::ApplyFriendPage(QWidget *parent) :
