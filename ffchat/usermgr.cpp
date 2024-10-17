@@ -239,13 +239,3 @@ void UserMgr::AppendFriendChatMsg(int friend_id,std::vector<std::shared_ptr<Text
 
     find_iter.value()->AppendChatMsgs(msgs);
 }
-
-//----------------------------
-void UserMgr::SetName(QString name)
-{
-    _name = name;
-}
-void UserMgr::SetUid(int uid)
-{
-    _uid = uid;
-}

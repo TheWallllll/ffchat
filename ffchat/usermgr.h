@@ -14,12 +14,6 @@ public:
     ~ UserMgr();
     void SetUserInfo(std::shared_ptr<UserInfo> user_info);
     void SetToken(QString token);
-
-    //------------------------------
-    void SetName(QString name);
-    void SetUid(int uid);
-    //-------------------------------
-
     int GetUid();
     QString GetName();
     QString GetIcon();
@@ -49,12 +43,6 @@ private:
     QString _token;
     int _chat_loaded;
     int _contact_loaded;
-
-    //--------------------------
-    QString _name;
-    int _uid;
-    //--------------------------
-
 public slots:
     void SlotAddFriendRsp(std::shared_ptr<AuthRsp> rsp);
     void SlotAddFriendAuth(std::shared_ptr<AuthInfo> auth);
