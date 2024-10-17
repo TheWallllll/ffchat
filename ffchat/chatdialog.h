@@ -32,6 +32,8 @@ private:
     void ClearLabelState(StateWidget* lb);
     void SetSelectChatItem(int uid = 0);
     void SetSelectChatPage(int uid = 0);
+    void loadMoreChatUser();
+    void loadMoreConUser();
 
     Ui::ChatDialog *ui;
     ChatUIMode _mode;
@@ -44,6 +46,7 @@ private:
 
 public slots:
     void slot_loading_chat_user();
+    void slot_loading_contact_user();
     void slot_side_chat();
     void slot_side_contact();
     void slot_text_changed(const QString & str);

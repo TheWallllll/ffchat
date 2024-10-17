@@ -10,7 +10,8 @@
 #include <QCoreApplication>
 #include "usermgr.h"
 
-ContactUserList::ContactUserList(QWidget *parent)
+ContactUserList::ContactUserList(QWidget *parent) : _add_friend_item(nullptr),
+    _load_pending(false)
 {
     Q_UNUSED(parent);
     this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -67,6 +68,19 @@ void ContactUserList::addContactUserList()
     this->setItemWidget(_groupitem, groupCon);
     _groupitem->setFlags(_groupitem->flags() & ~Qt::ItemIsSelectable);
 
+    //加载后端发送过来的好友列表
+    auto con_list = UserMgr::GetInstance()->GetConListPerPage();
+    for (auto& con_ele : con_list) {
+        auto* con_user_wid = new ConUserItem();
+        con_user_wid->SetInfo(con_ele->_uid, con_ele->_name, con_ele->_icon);
+        QListWidgetItem* item = new QListWidgetItem;
+        //qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
+        item->setSizeHint(con_user_wid->sizeHint());
+        this->addItem(item);
+        this->setItemWidget(item, con_user_wid);
+    }
+
+    UserMgr::GetInstance()->UpdateContactLoadedCount();
 
     // 创建QListWidgetItem，并设置自定义的widget
     for(int i = 0; i < 13; i++){
@@ -166,8 +180,23 @@ bool ContactUserList::eventFilter(QObject *watched, QEvent *event)
         //int pageSize = 10; // 每页加载的联系人数量
 
         if (maxScrollValue - currentValue <= 0) {
+            auto b_loaded = UserMgr::GetInstance()->IsLoadChatFin();
+            if (b_loaded) {
+                return true;
+            }
+
+            if (_load_pending) {
+                return true;
+            }
+
+            _load_pending = true;
+
+            QTimer::singleShot(100, [this]() {
+                _load_pending = false;
+                QCoreApplication::quit(); // 完成后退出应用程序
+                });
             // 滚动到底部，加载新的联系人
-            qDebug()<<"load more contact user";
+            qDebug() << "load more contact user";
             //发送信号通知聊天界面加载更多聊天内容
             emit sig_loading_contact_user();
         }
