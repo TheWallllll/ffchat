@@ -87,8 +87,7 @@
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
-      <ProgramDataBaseFileName>
-      </ProgramDataBaseFileName>
+      <ProgramDataBaseFileName></ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -151,7 +150,7 @@
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr /utf-8 -utf-8 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
-      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4819;4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -165,7 +164,6 @@
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <StringPooling>true</StringPooling>
     </ClCompile>
     <Link>
       <AdditionalDependencies>$(QTDIR)\lib\Qt6EntryPointd.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -235,6 +233,7 @@
     <ClCompile Include="customizeedit.cpp" />
     <ClCompile Include="findfaildlg.cpp" />
     <ClCompile Include="findsuccessdlg.cpp" />
+    <ClCompile Include="friendinfopage.cpp" />
     <ClCompile Include="friendlabel.cpp" />
     <ClCompile Include="global.cpp" />
     <ClCompile Include="grouptipitem.cpp" />
@@ -262,6 +261,7 @@
     <QtMoc Include="applyfrienditem.h" />
     <QtMoc Include="applyfriendlist.h" />
     <QtMoc Include="applyfriendpage.h" />
+    <QtMoc Include="authenfriend.h" />
     <QtMoc Include="bubbleframe.h" />
     <QtMoc Include="chatItembase.h" />
     <QtMoc Include="chatdialog.h" />
@@ -277,8 +277,8 @@
     <QtMoc Include="customizeedit.h" />
     <QtMoc Include="findfaildlg.h" />
     <QtMoc Include="findsuccessdlg.h" />
+    <QtMoc Include="friendinfopage.h" />
     <QtMoc Include="friendlabel.h" />
-    <QtMoc Include="authenfriend.h" />
     <ClInclude Include="global.h" />
     <QtMoc Include="grouptipitem.h" />
     <QtMoc Include="httpmgr.h" />
@@ -327,6 +327,7 @@
     <QtUic Include="conuseritem.ui" />
     <QtUic Include="findfaildlg.ui" />
     <QtUic Include="findsuccessdlg.ui" />
+    <QtUic Include="friendinfopage.ui" />
     <QtUic Include="friendlabel.ui" />
     <QtUic Include="grouptipitem.ui" />
     <QtUic Include="loadingdlg.ui" />

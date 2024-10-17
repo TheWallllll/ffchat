@@ -43,6 +43,7 @@ private:
     QMap<int, QListWidgetItem*> _chat_items_added;
 
     int _cur_chat_uid;
+    QWidget* _last_widget;
 
 public slots:
     void slot_loading_chat_user();
@@ -54,6 +55,7 @@ public slots:
     void slot_add_auth_friend(std::shared_ptr<AuthInfo> auth_info);
     void slot_auth_rsp(std::shared_ptr<AuthRsp> auth_rsp);
     void slot_jump_chat_item(std::shared_ptr<SearchInfo> si);
+    void slot_friend_info_page(std::shared_ptr<UserInfo> user_info);
 };
 
 #endif // CHATDIALOG_H

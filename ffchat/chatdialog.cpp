@@ -14,7 +14,8 @@ ChatDialog::ChatDialog(QWidget *parent)
     _mode(ChatUIMode::ChatMode),
     _state(ChatUIMode::ChatMode),
     _b_loading(false),
-    _cur_chat_uid(0)
+    _cur_chat_uid(0),
+    _last_widget(nullptr)
 {
     ui->setupUi(this);
     ui->add_btn->SetState("normal","hover","press");
@@ -100,6 +101,9 @@ ChatDialog::ChatDialog(QWidget *parent)
 
     //连接加载联系人的信号和槽函数
     connect(ui->con_user_list, &ContactUserList::sig_loading_contact_user, this, &ChatDialog::slot_loading_contact_user);
+
+    //连接点击联系人item发出的信号和用户信息展示槽函数
+    connect(ui->con_user_list, &ContactUserList::sig_switch_friend_info_page, this, &ChatDialog::slot_friend_info_page);
 }
 
 ChatDialog::~ChatDialog()
@@ -530,4 +534,12 @@ void ChatDialog::slot_jump_chat_item(std::shared_ptr<SearchInfo> si)
     SetSelectChatPage(si->_uid);
     slot_side_chat();
 
+}
+
+void ChatDialog::slot_friend_info_page(std::shared_ptr<UserInfo> user_info)
+{
+    qDebug() << "receive switch friend info page sig";
+    _last_widget = ui->friend_info_page;
+    ui->stackedWidget->setCurrentWidget(ui->friend_info_page);
+    ui->friend_info_page->SetInfo(user_info);
 }
