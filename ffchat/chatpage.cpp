@@ -5,6 +5,7 @@
 #include "chatItembase.h"
 #include "textbubble.h"
 #include "picturebubble.h"
+#include "usermgr.h"
 
 ChatPage::ChatPage(QWidget *parent) :
     QWidget(parent),
@@ -24,6 +25,49 @@ ChatPage::ChatPage(QWidget *parent) :
 ChatPage::~ChatPage()
 {
     delete ui;
+}
+
+void ChatPage::SetUserInfo(std::shared_ptr<UserInfo> user_info)
+{
+    _user_info = user_info;
+    //设置ui界面
+    ui->title_lb->setText(_user_info->_name);
+    ui->chat_data_list->removeAllItem();
+    for (auto& msg : user_info->_chat_msgs) {
+        AppendChatMsg(msg);
+    }
+}
+
+void ChatPage::AppendChatMsg(std::shared_ptr<TextChatData> msg)
+{
+    auto self_info = UserMgr::GetInstance()->GetUserInfo();
+    ChatRole role;
+    //todo... 添加聊天显示
+    if (msg->_from_uid == self_info->_uid) {
+        role = ChatRole::Self;
+        ChatItemBase* pChatItem = new ChatItemBase(role);
+
+        pChatItem->setUserName(self_info->_name);
+        pChatItem->setUserIcon(QPixmap(self_info->_icon));
+        QWidget* pBubble = nullptr;
+        pBubble = new TextBubble(role, msg->_msg_content);
+        pChatItem->setWidget(pBubble);
+        ui->chat_data_list->appendChatItem(pChatItem);
+    }
+    else {
+        role = ChatRole::Other;
+        ChatItemBase* pChatItem = new ChatItemBase(role);
+        auto friend_info = UserMgr::GetInstance()->GetFriendById(msg->_from_uid);
+        if (friend_info == nullptr) {
+            return;
+        }
+        pChatItem->setUserName(friend_info->_name);
+        pChatItem->setUserIcon(QPixmap(friend_info->_icon));
+        QWidget* pBubble = nullptr;
+        pBubble = new TextBubble(role, msg->_msg_content);
+        pChatItem->setWidget(pBubble);
+        ui->chat_data_list->appendChatItem(pChatItem);
+    }
 }
 
 void ChatPage::paintEvent(QPaintEvent *event)

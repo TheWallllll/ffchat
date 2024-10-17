@@ -30,6 +30,8 @@ private:
 
     void AddLBGroup(StateWidget* lb);
     void ClearLabelState(StateWidget* lb);
+    void SetSelectChatItem(int uid = 0);
+    void SetSelectChatPage(int uid = 0);
 
     Ui::ChatDialog *ui;
     ChatUIMode _mode;
@@ -37,6 +39,8 @@ private:
     bool _b_loading;
     QList<StateWidget*> _lb_list;
     QMap<int, QListWidgetItem*> _chat_items_added;
+
+    int _cur_chat_uid;
 
 public slots:
     void slot_loading_chat_user();
@@ -46,6 +50,7 @@ public slots:
     void slot_apply_friend(std::shared_ptr<AddFriendApply> apply);
     void slot_add_auth_friend(std::shared_ptr<AuthInfo> auth_info);
     void slot_auth_rsp(std::shared_ptr<AuthRsp> auth_rsp);
+    void slot_jump_chat_item(std::shared_ptr<SearchInfo> si);
 };
 
 #endif // CHATDIALOG_H
