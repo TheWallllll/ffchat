@@ -561,3 +561,8 @@ bool LogicSystem::GetFriendApplyInfo(int to_uid, std::vector<std::shared_ptr<App
 	//从mysql获取好友申请列表
 	return MysqlMgr::GetInstance()->GetApplyList(to_uid, list, 0, 10);
 }
+
+bool LogicSystem::GetFriendList(int self_id, std::vector<std::shared_ptr<UserInfo>>& user_list)
+{
+	return MysqlMgr::GetInstance()->GetFriendList(self_id, user_list);
+}
