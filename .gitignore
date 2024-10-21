@@ -11,4 +11,5 @@ vcpkg.json
 packages.config
 ffchat/bin/
 /ffchat/bin/ffchat.exe
-ffchat/bin/ffchat.exe
+/ffchat/bin/ffchat.ilk
+/ffchat/bin/ffchat.pdb
