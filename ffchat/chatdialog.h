@@ -34,6 +34,7 @@ private:
     void SetSelectChatPage(int uid = 0);
     void loadMoreChatUser();
     void loadMoreConUser();
+    void UpdateChatMsg(std::vector<std::shared_ptr<TextChatData> > msgdata);
 
     Ui::ChatDialog *ui;
     ChatUIMode _mode;
@@ -60,6 +61,7 @@ public slots:
     void slot_jump_chat_item_from_infopage(std::shared_ptr<UserInfo> user_info);
     void slot_item_clicked(QListWidgetItem* item);
     void slot_append_send_chat_msg(std::shared_ptr<TextChatData> msgdata);
+    void slot_text_chat_msg(std::shared_ptr<TextChatMsg> msg);
 };
 
 #endif // CHATDIALOG_H
