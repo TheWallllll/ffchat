@@ -59,6 +59,7 @@ public slots:
     void slot_switch_apply_friend_page();
     void slot_jump_chat_item_from_infopage(std::shared_ptr<UserInfo> user_info);
     void slot_item_clicked(QListWidgetItem* item);
+    void slot_append_send_chat_msg(std::shared_ptr<TextChatData> msgdata);
 };
 
 #endif // CHATDIALOG_H

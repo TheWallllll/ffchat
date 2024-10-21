@@ -27,6 +27,8 @@ private slots:
 private:
     Ui::ChatPage *ui;
     std::shared_ptr<UserInfo> _user_info;
+signals:
+    void sig_append_send_chat_msg(std::shared_ptr<TextChatData> msg);
 };
 
 #endif // CHATPAGE_H
